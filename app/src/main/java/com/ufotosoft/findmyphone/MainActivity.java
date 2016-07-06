@@ -8,6 +8,7 @@ import com.xiaomi.mipush.sdk.MiPushClient;
 import android.*;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.os.*;
@@ -73,8 +74,11 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d("IMEI",MyApplication.IMEI);
 
-        MiPushClient.setAlias(this, MyApplication.IMEI, null);
-        MiPushClient.registerPush(this, MyApplication.APP_ID, MyApplication.APP_KEY);
+        Intent sevice = new Intent(this, PushService.class);
+        this.startService(sevice);
+
+//        MiPushClient.setAlias(this, MyApplication.IMEI, null);
+//        MiPushClient.registerPush(this, MyApplication.APP_ID, MyApplication.APP_KEY);
 
         //打开Log
         LoggerInterface newLogger = new LoggerInterface() {
@@ -137,5 +141,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 
 }
